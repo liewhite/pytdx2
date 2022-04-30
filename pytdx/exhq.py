@@ -57,6 +57,7 @@ class TdxExHq_API(BaseSocketClient):
 
     def setup(self):
         ExSetupCmd1(self.client).call_api()
+        print("call seteup")
 
     # API LIST
 
@@ -101,7 +102,7 @@ class TdxExHq_API(BaseSocketClient):
         return cmd.call_api()
 
     @update_last_ack_time
-    def get_history_transaction_data(self, market, code, date, start=0, count=1800):
+    def get_history_transaction_data(self, market, code, date, start=0, count=100):
         cmd = GetHistoryTransactionData(self.client)
         cmd.setParams(market, code, date, start=start, count=count)
         return cmd.call_api()
@@ -132,7 +133,7 @@ if __name__ == '__main__':
     import pprint
 
     api = TdxExHq_API()
-    with api.connect('121.14.110.210', 7727):
+    with api.connect('47.106.209.131', 7727):
         # log.info("获取市场代码")
         # pprint.pprint(api.to_df(api.get_markets()))
         # log.info("查询市场中商品数量")

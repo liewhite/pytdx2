@@ -17,3 +17,15 @@ class GetInstrumentCount(BaseParser):
         return num
 
 
+
+if __name__ == '__main__':
+
+    from pytdx.exhq import TdxExHq_API
+
+    api = TdxExHq_API(raise_exception=True)
+    with api.connect('59.175.238.38', 7727):
+        # print(api.to_df(api.get_history_transaction_data(4, 'SR61099D', 20171025))[["date","price","volume",'zengcang','nature','t1','t2']])
+
+        print(api.to_df(api.get_instrument_count()))
+        #print(api.to_df(api.get_history_transaction_data(31,  "01918", 20171026))[["date","price","volume",'zengcang','nature']])
+        #api.to_df(api.get_history_transaction_data(47, 'IFL0', 20170810)).to_excel('//Users//wy//data//iflo.xlsx')

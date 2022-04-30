@@ -85,7 +85,7 @@ class BaseParser(object):
             raise SendPkgNotReady("send pkg not ready")
 
         nsended = self.client.send(self.send_pkg)
-
+        
         self.client.send_pkg_num += 1
         self.client.send_pkg_bytes += nsended
         self.client.last_api_send_bytes = nsended

@@ -16,16 +16,19 @@ class GetHistoryTransactionData(BaseParser):
         #     date = int(date)
 
         # pkg1 = bytearray.fromhex('01 01 30 00 02 01 16 00 16 00 06 24 3b c8 33 01 1f 30 30 30 32 30 00 00 00 01 00 00 00 00 f0 00')
-        pkg = bytearray.fromhex('01 01 30 00 02 01 16 00 16 00 06 24')
+        pkg = bytearray.fromhex('010130000201160016000824')
         pkg.extend(struct.pack("<IB9siH", date, market, code, start, count))
         self.send_pkg = pkg
+        print("data:", pkg.hex())
         self.date = date
 
     def parseResponse(self, body_buf):
+        print("result:", body_buf.hex())
 
         pos = 0
-        market, code, _, num = struct.unpack('<B9s4sH', body_buf[pos: pos + 16])
-        pos += 16
+        market, code= struct.unpack('<B9s', body_buf[pos: pos + 10])
+        num, = struct.unpack('<H', body_buf[pos+26: pos + 28])
+        pos += 28
         result = []
         for i in range(num):
 
@@ -121,10 +124,10 @@ if __name__ == '__main__':
 
     from pytdx.exhq import TdxExHq_API
 
-    api = TdxExHq_API()
-    with api.connect('121.14.110.210', 7727):
+    api = TdxExHq_API(raise_exception=True)
+    with api.connect('47.106.209.131', 7727):
         # print(api.to_df(api.get_history_transaction_data(4, 'SR61099D', 20171025))[["date","price","volume",'zengcang','nature','t1','t2']])
-
-        print(api.to_df(api.get_history_transaction_data(47, 'IFL0', 20170811)))
+        # print(api.get_markets())
+        print(api.to_df(api.get_history_transaction_data(28, 'FGL8', 20201026,start=1000,count=900)))
         #print(api.to_df(api.get_history_transaction_data(31,  "01918", 20171026))[["date","price","volume",'zengcang','nature']])
         #api.to_df(api.get_history_transaction_data(47, 'IFL0', 20170810)).to_excel('//Users//wy//data//iflo.xlsx')

@@ -25,7 +25,7 @@ import functools
 from pytdx.parser.raw_parser import RawParser
 
 
-CONNECT_TIMEOUT = 5.000
+CONNECT_TIMEOUT = 30.000
 RECV_HEADER_LEN = 0x10
 DEFAULT_HEARTBEAT_INTERVAL = 10.0
 
@@ -152,7 +152,7 @@ class BaseSocketClient(object):
         # 是否在函数调用出错的时候抛出异常
         self.raise_exception = raise_exception
 
-    def connect(self, ip='101.227.73.20', port=7709, time_out=CONNECT_TIMEOUT, bindport=None, bindip='0.0.0.0'):
+    def connect(self, ip='47.106.209.131', port=7727, time_out=CONNECT_TIMEOUT, bindport=None, bindip='0.0.0.0'):
         """
 
         :param ip:  服务器ip 地址

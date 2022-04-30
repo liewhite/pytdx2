@@ -9,12 +9,7 @@ import struct
 class ExSetupCmd1(BaseParser):
 
     def setup(self):
-        self.send_pkg = bytearray.fromhex("01 01 48 65 00 01 52 00 52 00 54 24 1f 32 c6 e5"
-                                            "d5 3d fb 41 1f 32 c6 e5 d5 3d fb 41 1f 32 c6 e5"
-                                            "d5 3d fb 41 1f 32 c6 e5 d5 3d fb 41 1f 32 c6 e5"
-                                            "d5 3d fb 41 1f 32 c6 e5 d5 3d fb 41 1f 32 c6 e5"
-                                            "d5 3d fb 41 1f 32 c6 e5 d5 3d fb 41 cc e1 6d ff"
-                                            "d5 ba 3f b8 cb c5 7a 05 4f 77 48 ea")
+        self.send_pkg = bytearray.fromhex("010148650001520052005424e5bb1c2fafe525941f32c6e5d53dfb415b734cc9cdbf0ac92021bfdd1eb06d22da3bfcac1354076b3092c4f924cfd2d31f32c6e5d53dfb411f32c6e5d53dfb4124288302ea5fc63df443512c51847720")
 
     def parseResponse(self, body_buf):
         pass
